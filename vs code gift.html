@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>For You ❤️</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+
+    body {
+      height: 100vh;
+      background: #f5e6d8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    /* SHARED SCREEN */
+    .screen {
+      position: absolute;
+      inset: 0;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      flex-direction: column;
+      padding: 40px 20px;
+    }
+
+    /* FIRST SCREEN */
+    .container {
+      background: #ffc0d4;
+      width: 80%;
+      max-width: 900px;
+      height: 420px;
+      border-radius: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+      text-align: center;
+      position: relative;
+    }
+
+    .bear {
+      width: 110px;
+      height: 110px;
+      background: #f4b183;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      font-size: 70px;
+    }
+
+    h1 {
+      font-size: 42px;
+      color: #4a1f2d;
+      margin-bottom: 15px;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    p {
+      font-size: 16px;
+      color: #6b3a45;
+      max-width: 520px;
+      margin-bottom: 40px;
+    }
+
+    .buttons {
+      position: relative;
+      width: 420px;
+      height: 100px;
+    }
+
+    button {
+      border: none;
+      padding: 14px 42px;
+      font-size: 18px;
+      border-radius: 30px;
+      cursor: pointer;
+      color: white;
+      font-weight: 600;
+      position: absolute;
+      transition: transform 0.3s ease;
+    }
+
+    .yes { background: #ff2d2d; left: 40px; top: 25px; z-index: 2; }
+    .no { background: #2d3cff; right: 40px; top: 25px; z-index: 1; }
+
+    /* SECOND SCREEN */
+    .valentine { background: white; }
+    .valentine-content{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      height:100%;
+      width:100%;
+      justify-content:space-between;
+      padding:60px 20px 40px;
+    }
+
+    .valentine-text{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:24px;
+    }
+    .valentine h2 { font-size: 56px; color: #ff2d2d; margin-bottom: 20px; font-weight: 700; }
+    .valentine p { font-size: 20px; color: #444; max-width: 700px; margin-bottom: 35px; }
+    .gift-btn { background: #ff2d2d; padding: 16px 46px; font-size: 20px; border-radius: 40px; color: white; cursor: pointer; border: none; box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
+
+    /* THIRD SCREEN */
+    .letter {
+  background-image: 
+    linear-gradient(rgba(255,250,245,0.9), rgba(255,250,245,0.9)),
+    url("C:\Users\91842\Downloads\pic 3.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow-y: auto;
+}
+
+
+    .letter h2 { font-size: 48px; color: #ff2d2d; margin-bottom: 25px; }
+
+    .letter p {
+      font-size: 20px;
+      color: #444;
+      max-width: 800px;
+      line-height: 1.7;
+      margin-bottom: 40px;
+    }
+
+    .photos {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      width: 100%;
+      max-width: 700px;
+      margin-bottom: 40px;
+    }
+
+    .photos img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+
+    /* Falling hearts */
+    .heart { position: absolute; top: -10px; font-size: 24px; animation: fall linear forwards; }
+    @keyframes fall { to { transform: translateY(110vh); opacity: 0; } }
+  </style>
+</head>
+<body>
+
+  <!-- FIRST -->
+  <div class="container" id="firstScreen">
+    <div class="bear">🧸</div>
+    <h1 id="title">Will you be mine 🥺?</h1>
+    <p>Life is an incredible journey, and I want to spend every single second of it with you.</p>
+    <div class="buttons">
+      <button class="yes" id="yesBtn" onclick="yesClicked()">YES</button>
+      <button class="no" id="noBtn" onclick="noClicked()">NO</button>
+    </div>
+  </div>
+
+  <!-- SECOND -->
+  <div class="screen valentine" id="valentineScreen" style="display:none; position:relative; padding:60px 20px 120px;">
+    <h2 style="margin-bottom:24px;">Happy Valentine's Day Baby ❤️</h2>
+    <p style="max-width:700px; line-height:1.6;">Every second with you is a celebration, you are the spark that makes my world so much brighter.</p>
+    <button class="gift-btn" onclick="openGift()" style="position:absolute; bottom:40px; left:50%; transform:translateX(-50%);">See your gift 🎁</button>
+  </div>
+
+  <!-- THIRD -->
+  <div class="screen letter" id="letterScreen">
+    
+    <h2>A letter for you 😘</h2>
+    <p>
+      Every time I think of you, my world softens. Your smile steadies me, your voice feels like home.
+      I choose you in quiet moments and loud dreams. Loving you teaches me courage, patience, and joy.
+      Stay with me; let’s grow, laugh, and always find our way together, today, tomorrow, forever.
+    </p>
+    <div class="photos">
+      <img src="C:\Users\91842\Downloads\pic 4.jpeg" alt="Us">
+      <img src="C:\Users\91842\Downloads\pic 5.jpeg" alt="Us">
+    </div>
+  </div>
+
+  <script>
+    let noCount = 0;
+    const titles = ["Think again 🤔", "Are you sure 😢", "Are see this 👀"];
+
+    function noClicked() {
+      noCount++;
+      const yesBtn = document.getElementById('yesBtn');
+      const title = document.getElementById('title');
+      if (noCount <= 3) {
+        title.textContent = titles[noCount - 1];
+      }
+
+      let scale;
+      if (noCount < 4) {
+        scale = 1 + noCount * 0.5;
+      } else {
+        // scale just enough to hide NO button
+        scale = 3;
+      }
+      yesBtn.style.transform = `scale(${scale})`;
+    }
+
+    function yesClicked() {
+      document.getElementById('firstScreen').style.display = 'none';
+      document.getElementById('valentineScreen').style.display = 'flex';
+      startHearts();
+    }
+
+    function openGift() {
+      document.getElementById('valentineScreen').style.display = 'none';
+      document.getElementById('letterScreen').style.display = 'flex';
+    }
+
+    function startHearts() {
+      setInterval(() => {
+        const heart = document.createElement('div');
+        heart.classList.add('heart');
+        heart.textContent = '❤️';
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.animationDuration = (3 + Math.random() * 3) + 's';
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 6000);
+      }, 300);
+    }
+  </script>
+
+</body>
+</html>
+
